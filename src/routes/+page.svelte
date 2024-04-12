@@ -1,7 +1,9 @@
 <script lang="ts">
-import Button from '../components/button.svelte'
+import Button from '../components/Button.svelte'
+import Loading from '../components/Loading.svelte'
 import Exit from '../assets/exit.svg'
 
+let isLoading: Boolean = false
 let inputRef: HTMLInputElement;
 let previewImageUrl: string | null | undefined;
 
@@ -12,25 +14,33 @@ const handleClick = () => {
 const onChange = () => {
     const selectedFile = inputRef.files ?? '';
 
-    // Check if a file is selected
-    if (selectedFile) {
-      // Read the selected file as a data URL
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        // Set the previewImageUrl to the data URL of the selected image
-        previewImageUrl = event?.target?.result as string;
-      };
-      reader.readAsDataURL(selectedFile[0]);
-    }
+    isLoading = true
+    setTimeout(() => {
+        // Check if a file is selected
+        if (selectedFile) {
+            // Read the selected file as a data URL
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Set the previewImageUrl to the data URL of the selected image
+                previewImageUrl = event?.target?.result as string;
+            };
+            reader.readAsDataURL(selectedFile[0]);
+        }
+        isLoading = false
+    }, 3000)
 }
 
 </script>
 
 <div class="w-full flex flex-col items-center justify-center gap-8">
-    <div class="w-2/5 p-2 aspect-video bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class={`w-2/5 p-2 ${isLoading ? 'py-12' : 'aspect-video'} bg-white shadow-lg rounded-lg overflow-hidden`}>
+        <!-- Loader -->
+        {#if isLoading}
+            <Loading />
         <!-- Preview Image -->
-        {#if previewImageUrl}
+        {:else if previewImageUrl}
             <img src={previewImageUrl} alt="preview-img" class="w-full h-full object-cover rounded-lg"/>
+        <!-- Input Box -->
         {:else}
             <div class="w-full h-full flex flex-col items-center justify-center gap-5 border border-dashed rounded-lg" role="button" tabindex="0" on:click={handleClick} on:keydown={() => {}}>
                 <input type="file" class="hidden" accept="image/*" bind:this={inputRef} on:change={onChange}>
