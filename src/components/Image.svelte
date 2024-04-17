@@ -89,7 +89,7 @@ const resetImage = () => {
     on:drop={handleDrop}
     on:dragover={handleDragOver} 
     tabindex=0
-    class={`w-2/5 p-2 ${isLoading ? 'py-12' : 'aspect-video'} bg-white dark:bg-[#212936] shadow-lg rounded-lg overflow-hidden`}>
+    class={`w-[90%] lg:w-3/5 xl:w-2/5 p-2 ${isLoading ? 'py-12' : 'aspect-video'} bg-white dark:bg-[#212936] shadow-lg rounded-lg overflow-hidden`}>
     <!-- Loader -->
     {#if isLoading}
         <Loading />
@@ -103,8 +103,8 @@ const resetImage = () => {
 
             <img src={Exit} alt="exit">
             <div class="flex flex-col items-center">
-                <p class="font-semibold">Drag & drop a file or <span class="text-blue-400">browse files</span></p>
-                <p class="text-sm">JPG, PNG or GIF - Max file size 2MB</p>
+                <p class="text-sm lg:text-base font-semibold">Drag & drop a file or <span class="text-blue-400">browse files</span></p>
+                <p class="text-xs lg:text-sm">JPG, PNG or GIF - Max file size 2MB</p>
             </div>
         </div>
     {/if}

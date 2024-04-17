@@ -10,6 +10,7 @@
     const isDarkMode = localStorage.getItem('darkMode');
     if (isDarkMode) {
       darkMode = JSON.parse(isDarkMode)
+      changeTheme()
     }
   });
 
@@ -28,7 +29,7 @@
 </script>
 
 <header class="w-full border-b border-brand-gray dark:border-[#212936] shadow">
-  <div class="px-24 py-5 flex items-center justify-between">
+  <div class="px-4 lg:px-24 py-5 flex items-center justify-between">
     <a href="/" class="flex items-center gap-4">
       <img src={Logo} alt="logo">
       <span class="font-bold dark:text-white">ImageUpload</span>
