@@ -89,7 +89,7 @@ const resetImage = () => {
     on:drop={handleDrop}
     on:dragover={handleDragOver} 
     tabindex=0
-    class={`w-2/5 p-2 ${isLoading ? 'py-12' : 'aspect-video'} bg-white shadow-lg rounded-lg overflow-hidden`}>
+    class={`w-2/5 p-2 ${isLoading ? 'py-12' : 'aspect-video'} bg-white dark:bg-[#212936] shadow-lg rounded-lg overflow-hidden`}>
     <!-- Loader -->
     {#if isLoading}
         <Loading />
@@ -98,7 +98,7 @@ const resetImage = () => {
         <img src={previewImageUrl.toString()} alt="preview-img" class="w-full h-full object-cover rounded-lg"/>
     <!-- Input Box -->
     {:else}
-        <div class="w-full h-full flex flex-col items-center justify-center gap-5 border border-dashed rounded-lg" role="button" tabindex="0" on:click={handleClick} on:keydown={() => handleClick}>
+        <div class="w-full h-full dark:text-white flex flex-col items-center justify-center gap-5 border border-dashed dark:border-[#4D5562] rounded-lg" role="button" tabindex="0" on:click={handleClick} on:keydown={() => handleClick}>
             <input type="file" class="hidden" accept="image/*" bind:this={inputRef} on:change={onChange}>
 
             <img src={Exit} alt="exit">
