@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Simple Image Uploader | Home</title>
+</svelte:head>
+
 <script lang="ts">
   import Image from "../components/Image.svelte";
 
